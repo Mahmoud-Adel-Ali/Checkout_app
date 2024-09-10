@@ -1,5 +1,6 @@
 import 'package:checkout_app/Core/utils/images.dart';
 import 'package:checkout_app/Core/utils/styless.dart';
+import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/my_cart_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,6 +20,7 @@ class MyCartView extends StatelessWidget {
           background: Container(color: Colors.white),
         ),
       ),
+      body: const MyCartViewBody(),
     );
   }
 }
