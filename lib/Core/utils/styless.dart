@@ -19,6 +19,12 @@ abstract class Styless {
     color: Colors.black.withOpacity(0.8),
     fontFamily: 'Inter',
   );
+  static const TextStyle style22 = TextStyle(
+    fontSize: 22.0,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    fontFamily: 'Inter',
+  );
   static const TextStyle style18 = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w400,
