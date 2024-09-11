@@ -1,5 +1,4 @@
-import 'package:checkout_app/Core/utils/images.dart';
-import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_item.dart';
+import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_methods_list_view.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDetailsViewBody extends StatelessWidget {
@@ -12,12 +11,7 @@ class PaymentDetailsViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              PaymentItem(image: AppImages.imagesCard, isActive: true),
-            ],
-          ),
+          PaymentMethodsListView(),
         ],
       ),
     );
