@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ActivePaymentItem extends StatelessWidget {
-  const ActivePaymentItem({super.key, required this.image});
+class PaymentItem extends StatelessWidget {
+  const PaymentItem({super.key, required this.image, required this.isActive});
   final String image;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 500),
       width: 103,
       height: 62,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
-          side: const BorderSide(
-              width: 1.5,
-              color: Colors.green ),
+          side: BorderSide(
+              width: 1.5, color: isActive ? Colors.green : Colors.grey),
         ),
-        shadows: const[
+        shadows: [
           BoxShadow(
-            color:  Colors.green ,
+            color: isActive ? Colors.green : Colors.grey,
             blurRadius: 4,
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
             spreadRadius: 0,
           ),
         ],
