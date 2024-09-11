@@ -3,7 +3,7 @@ import 'package:checkout_app/Core/utils/styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-AppBar buildAppBart({required String title, void Function()? onTapOnLeading}) {
+AppBar buildAppBar({required String title, void Function()? onTapOnLeading}) {
   return AppBar(
     title: Text(title, style: Styless.style25),
     centerTitle: true,
