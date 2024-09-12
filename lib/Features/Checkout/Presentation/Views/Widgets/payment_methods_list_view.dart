@@ -2,9 +2,20 @@ import 'package:checkout_app/Core/utils/images.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_item.dart';
 import 'package:flutter/material.dart';
 
-class PaymentMethodsListView extends StatelessWidget {
+class PaymentMethodsListView extends StatefulWidget {
   const PaymentMethodsListView({super.key});
 
+  @override
+  State<PaymentMethodsListView> createState() => _PaymentMethodsListViewState();
+}
+
+class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
+  final List<String> items = [
+    AppImages.imagesCard,
+    AppImages.imagesPaypal,
+    AppImages.imagesApplePay,
+  ];
+  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -14,17 +25,15 @@ class PaymentMethodsListView extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child:
-              PaymentItem(image: items[index], isActive: true),
+          child: GestureDetector(
+              onTap: () {
+                activeIndex = index;
+                setState(() {});
+              },
+              child: PaymentItem(
+                  image: items[index], isActive: index == activeIndex)),
         ),
       ),
     );
   }
 }
-
-final List<String> items = [
-    AppImages.imagesCard,
-    AppImages.imagesPaypal,
-    AppImages.imagesApplePay,
-  ];
-  int currenIndex = 0;
