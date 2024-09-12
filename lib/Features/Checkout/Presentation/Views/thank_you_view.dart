@@ -1,3 +1,4 @@
+import 'package:checkout_app/Core/utils/functions/build_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ThankYouView extends StatelessWidget {
@@ -5,6 +6,12 @@ class ThankYouView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: buildAppBar(
+          title: '',
+          onTapOnLeading: () {
+            Navigator.pop(context);
+          }),
+    );
   }
 }
