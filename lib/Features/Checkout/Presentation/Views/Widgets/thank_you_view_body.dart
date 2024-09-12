@@ -1,3 +1,4 @@
+import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/custom_dashed_line.dart';
 import 'package:flutter/material.dart';
 
 class ThankYouViewBody extends StatelessWidget {
@@ -17,6 +18,12 @@ class ThankYouViewBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
+          ),
+          Positioned(
+            bottom: MediaQuery.sizeOf(context).height * 0.2 + 20,
+            left: 0,
+            right: 0,
+            child: const CusotmDashedLine(),
           ),
           Positioned(
             bottom: MediaQuery.sizeOf(context).height * 0.2,
