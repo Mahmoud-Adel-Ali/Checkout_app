@@ -1,22 +1,39 @@
+import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/custom_credit_card.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_methods_list_view.dart';
 import 'package:flutter/material.dart';
 
-class PaymentDetailsViewBody extends StatelessWidget {
+class PaymentDetailsViewBody extends StatefulWidget {
   const PaymentDetailsViewBody({super.key});
 
   @override
+  State<PaymentDetailsViewBody> createState() => _PaymentDetailsViewBodyState();
+}
+
+class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            SizedBox(height: 25),
-            PaymentMethodsListView(),
-            CustomCreditCard(),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: SizedBox(height: 25)),
+          const SliverToBoxAdapter(child: PaymentMethodsListView()),
+          const SliverToBoxAdapter(child: SizedBox(height: 25)),
+          SliverToBoxAdapter(child: CustomCreditCard(formKey: formKey)),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              children: [
+                const Expanded(child: SizedBox(height: 25)),
+                CustomButtom(onPressed: () {}, text: 'Pay'),
+                const SizedBox(height: 12),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
