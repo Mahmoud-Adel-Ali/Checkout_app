@@ -1,3 +1,4 @@
+import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/custom_credit_card.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_methods_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class PaymentDetailsViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 25),
           PaymentMethodsListView(),
+          CustomCreditCard(),
         ],
       ),
     );
