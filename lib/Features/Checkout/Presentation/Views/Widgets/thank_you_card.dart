@@ -37,7 +37,7 @@ class ThankYouCard extends StatelessWidget {
             const SizedBox(height: 30),
             const Spacer(),
             const CardInfoWidget(),
-            const Spacer(),
+             const Spacer(flex: 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
