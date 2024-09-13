@@ -10,6 +10,8 @@ class AppImages {
 
   static const String imagesCard = "assets/images/card.svg";
 
+  static const String imagesMasterCard = "assets/images/master_card.svg";
+
   static const String imagesPaypal = "assets/images/paypal.svg";
 }
 
