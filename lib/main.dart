@@ -21,5 +21,7 @@ class CheckoutApp extends StatelessWidget {
 
 
 
-// payment steps
-// 1 => create payment intent ( required ( amount , currency) , not required (.....))
+//// payment steps(stripe)
+                    // => https://docs.page/flutter-stripe/flutter_stripe/sheet
+// paymentIntentObject ===> 1. create payment intent ( required ( amount , currency) , not required (.....))
+// 2. Integrate the payment sheet(paymentIntentClientSecret)              [Client Side]
