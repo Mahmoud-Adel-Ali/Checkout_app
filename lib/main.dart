@@ -17,3 +17,9 @@ class CheckoutApp extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// payment steps
+// 1 => create payment intent ( required ( amount , currency) , not required (.....))
