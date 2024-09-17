@@ -25,3 +25,4 @@ class CheckoutApp extends StatelessWidget {
                     // => https://docs.page/flutter-stripe/flutter_stripe/sheet
 // paymentIntentObject ===> 1. create payment intent ( required ( amount , currency) , not required (.....))
 // 2. Integrate the payment sheet(paymentIntentClientSecret)              [Client Side]
+// 3. present the payment sheet await Stripe.instance.presentPaymentSheet();
