@@ -31,6 +31,4 @@ class StripeService {
   Future displayPaymentSheet() async {
     await Stripe.instance.presentCustomerSheet();
   }
-
-  Future makePayment()async{}
 }

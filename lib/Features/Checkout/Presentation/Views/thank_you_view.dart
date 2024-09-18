@@ -8,12 +8,11 @@ class ThankYouView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(onTapOnLeading: (){
+      appBar: buildAppBar(onTapOnLeading: () {
         Navigator.pop(context);
       }),
-      body:  Transform.translate(
-        offset: const Offset(0, -18),
-        child: const ThankYouViewBody()),
+      body: Transform.translate(
+          offset: const Offset(0, -18), child: const ThankYouViewBody()),
     );
   }
 }
