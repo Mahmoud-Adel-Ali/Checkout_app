@@ -3,7 +3,10 @@ import 'package:checkout_app/Core/utils/images.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/order_info_item.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/payment_methods_bottom_sheet.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/Widgets/total_price.dart';
+import 'package:checkout_app/Features/Checkout/Presentation/manager/payment_cubit/payment_cubit.dart';
+import 'package:checkout_app/Features/Checkout/data/repos/checkout_repo_impl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyCartViewBody extends StatelessWidget {
   const MyCartViewBody({super.key});
@@ -33,12 +36,17 @@ class MyCartViewBody extends StatelessWidget {
           CustomButtom(
             onPressed: () {
               showModalBottomSheet(
-                context: context,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                builder: (context) => const PaymentMethodsBottomSheet(),
-              );
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  builder: (context) {
+                    return BlocProvider(
+                      create: (context) =>
+                          PaymentCubit(checkoutRepo: CheckoutRepoImpl()),
+                      child: const PaymentMethodsBottomSheet(),
+                    );
+                  });
             },
             text: 'Complete Payment',
           ),

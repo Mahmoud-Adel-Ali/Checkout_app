@@ -8,16 +8,18 @@ class CustomButtom extends StatelessWidget {
     required this.text,
     this.color,
     this.textColor,
+    this.isLoading = false,
   });
   final Function()? onPressed;
   final String text;
   final Color? color;
   final Color? textColor;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: onPressed,
+      onPressed: isLoading ? () {} : onPressed,
       color: color ?? const Color(0xff34A853),
       textColor: textColor ?? Colors.black,
       minWidth: MediaQuery.sizeOf(context).width,
@@ -25,7 +27,9 @@ class CustomButtom extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
-      child: Text(text, style: Styless.style22),
+      child: isLoading
+          ? const CircularProgressIndicator()
+          : Text(text, style: Styless.style22),
     );
   }
 }
