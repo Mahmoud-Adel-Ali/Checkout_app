@@ -19,10 +19,8 @@ class CustomButtomBlocConsumer extends StatelessWidget {
           Navigator.of(context).pop();
           showSnakBarMessage(context, msg: state.errorMessage);
         } else if (state is PaymentSuccess) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const ThankYouView()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const ThankYouView()));
         }
       },
       builder: (context, state) {
