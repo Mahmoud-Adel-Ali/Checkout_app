@@ -2,6 +2,7 @@ import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
 import 'package:checkout_app/Core/utils/styless.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/payment_details_view.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/manager/payment_cubit/payment_cubit.dart';
+import 'package:checkout_app/Features/Checkout/data/models/payment_intent_input_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,7 @@ class CustomButtomBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is PaymentFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.errorMessage,style: Styless.style18)),
+            SnackBar(content: Text(state.errorMessage, style: Styless.style18)),
           );
         } else if (state is PaymentSuccess) {
           Navigator.pushReplacement(
@@ -28,7 +29,14 @@ class CustomButtomBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return CustomButtom(
           isLoading: state is PaymentLoading,
-          onPressed: () {},
+          onPressed: () {
+            context.read<PaymentCubit>().makePayment(
+                  paymentIntentInputModel: PaymentIntentInputModel(
+                    amount: '100',
+                    currency: 'USD',
+                  ),
+                );
+          },
           text: 'Continue',
         );
       },
