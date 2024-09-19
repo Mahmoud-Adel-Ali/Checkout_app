@@ -8,8 +8,9 @@ class PaymentIntentInputModel {
   });
 
   toJson() {
+    int newAmount = int.parse(amount) * 100;
     return {
-      'amount': amount,
+      'amount': newAmount,
       'currency': currency,
     };
   }
