@@ -29,6 +29,7 @@ class CheckoutApp extends StatelessWidget {
 
 // save card info steps
 // 1 - create payment intent(amount , currency , customerId) returned paymentIntentModel
+// customerId = cus_QsXJYf3W0UeU4U
 // customerId => you can create custom id in stripe while user create account in this app
 // 2 - create ephemeralKey (stripeVersion , customerId) returned KeySecret
 // 3 - initPaymentSheet (merchentDisplayName , IntentClientSecret , ephemeralKeySecret)
