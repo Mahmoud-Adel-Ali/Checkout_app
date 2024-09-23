@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
 import 'package:checkout_app/Core/utils/functions/show_snak_bar_message.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
@@ -18,6 +20,7 @@ class CustomButtomBlocConsumer extends StatelessWidget {
         if (state is PaymentFailure) {
           Navigator.of(context).pop();
           showSnakBarMessage(context, msg: state.errorMessage);
+          log(state.errorMessage);
         } else if (state is PaymentSuccess) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const ThankYouView()));
