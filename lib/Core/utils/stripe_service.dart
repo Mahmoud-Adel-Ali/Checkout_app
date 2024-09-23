@@ -91,4 +91,3 @@ class StripeService {
     return ephemeralKeyModel;
   }
 }
-
