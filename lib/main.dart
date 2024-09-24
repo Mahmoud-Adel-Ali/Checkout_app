@@ -27,7 +27,6 @@ class CheckoutApp extends StatelessWidget {
 // 2. Integrate the payment sheet(paymentIntentClientSecret)              [Client Side]
 // 3. present the payment sheet await Stripe.instance.presentPaymentSheet();
 
-
 // save card info steps
 // 1 - create payment intent(amount , currency , customerId) returned paymentIntentModel
 // customerId = cus_QsXJYf3W0UeU4U
