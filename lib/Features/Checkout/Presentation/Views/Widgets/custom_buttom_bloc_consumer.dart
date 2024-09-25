@@ -4,6 +4,10 @@ import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
 import 'package:checkout_app/Core/utils/functions/show_snak_bar_message.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/manager/payment_cubit/payment_cubit.dart';
+import 'package:checkout_app/Features/Checkout/data/models/amount_model/amount_model.dart';
+import 'package:checkout_app/Features/Checkout/data/models/amount_model/details.dart';
+import 'package:checkout_app/Features/Checkout/data/models/item_list_model/item_list_model.dart';
+import 'package:checkout_app/Features/Checkout/data/models/item_list_model/order_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
@@ -37,56 +41,41 @@ class CustomButtomBlocConsumer extends StatelessWidget {
             //         customerId: 'cus_QsXJYf3W0UeU4U',
             //       ),
             //     );
+            var amount = AmountModel(
+                total: "100",
+                currency: "USD",
+                details: Details(
+                    subtotal: '100', shipping: '0', shippingDiscount: 0));
 
+            List<OrderItemModel> orders = [
+              OrderItemModel(
+                name: "Apple",
+                quantity: 4,
+                price: "10",
+                currency: "USD",
+              ),
+              OrderItemModel(
+                name: "Pineapple",
+                quantity: 5,
+                price: "12",
+                currency: "USD",
+              )
+            ];
+            var itemList = ItemListModel(orders: orders);
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PaypalCheckoutView(
                 sandboxMode: true,
                 clientId: "YOUR CLIENT ID",
                 secretKey: "YOUR SECRET KEY",
-                transactions: const [
+                transactions: [
                   {
-                    "amount": {
-                      "total": '100',
-                      "currency": "USD",
-                      "details": {
-                        "subtotal": '100',
-                        "shipping": '0',
-                        "shipping_discount": 0
-                      }
-                    },
+                    "amount": amount.toJson(),
                     "description": "The payment transaction description.",
                     // "payment_options": {
                     //   "allowed_payment_method":
                     //       "INSTANT_FUNDING_SOURCE"
                     // },
-                    "item_list": {
-                      "items": [
-                        {
-                          "name": "Apple",
-                          "quantity": 4,
-                          "price": '10',
-                          "currency": "USD"
-                        },
-                        {
-                          "name": "Pineapple",
-                          "quantity": 5,
-                          "price": '12',
-                          "currency": "USD"
-                        }
-                      ],
-
-                      // Optional
-                      //   "shipping_address": {
-                      //     "recipient_name": "Tharwat samy",
-                      //     "line1": "tharwat",
-                      //     "line2": "",
-                      //     "city": "tharwat",
-                      //     "country_code": "EG",
-                      //     "postal_code": "25025",
-                      //     "phone": "+00000000",
-                      //     "state": "ALex"
-                      //  },
-                    }
+                    "item_list": itemList.toJson(),
                   }
                 ],
                 note: "Contact us for any questions on your order.",
