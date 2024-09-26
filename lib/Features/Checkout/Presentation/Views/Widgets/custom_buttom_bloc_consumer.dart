@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
+import 'package:checkout_app/Core/enums/payment_type.dart';
 import 'package:checkout_app/Core/utils/api_keys.dart';
 import 'package:checkout_app/Core/utils/functions/show_snak_bar_message.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
@@ -56,7 +57,6 @@ class CustomButtomBlocConsumer extends StatelessWidget {
 
   void paymentWithPaypal(BuildContext context) {
     var transctionsData = getTransctionsData();
-
     exceuteePaypalPayment(context, transctionsData);
   }
 
@@ -133,5 +133,3 @@ class CustomButtomBlocConsumer extends StatelessWidget {
     return (amount: amount, itemList: itemList);
   }
 }
-
-enum PaymentType { creditCard, paypal, applePay }
