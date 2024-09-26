@@ -41,62 +41,74 @@ class CustomButtomBlocConsumer extends StatelessWidget {
             //         customerId: 'cus_QsXJYf3W0UeU4U',
             //       ),
             //     );
-            var amount = AmountModel(
-                total: "100",
-                currency: "USD",
-                details: Details(
-                    subtotal: '100', shipping: '0', shippingDiscount: 0));
 
-            List<OrderItemModel> orders = [
-              OrderItemModel(
-                name: "Apple",
-                quantity: 4,
-                price: "10",
-                currency: "USD",
-              ),
-              OrderItemModel(
-                name: "Pineapple",
-                quantity: 5,
-                price: "12",
-                currency: "USD",
-              )
-            ];
-            var itemList = ItemListModel(orders: orders);
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => PaypalCheckoutView(
-                sandboxMode: true,
-                clientId: "YOUR CLIENT ID",
-                secretKey: "YOUR SECRET KEY",
-                transactions: [
-                  {
-                    "amount": amount.toJson(),
-                    "description": "The payment transaction description.",
-                    // "payment_options": {
-                    //   "allowed_payment_method":
-                    //       "INSTANT_FUNDING_SOURCE"
-                    // },
-                    "item_list": itemList.toJson(),
-                  }
-                ],
-                note: "Contact us for any questions on your order.",
-                onSuccess: (Map params) async {
-                  log("onSuccess: $params");
-                  Navigator.pop(context);
-                },
-                onError: (error) {
-                  log("onError: $error");
-                  Navigator.pop(context);
-                },
-                onCancel: () {
-                  debugPrint('cancelled:');
-                  Navigator.pop(context);
-                },
-              ),
-            ));
+            var transctionsData = getTransctionsData();
+
+            exceuteePaypalPayment(context, transctionsData);
           },
           text: 'Continue',
         );
       },
     );
+  }
+
+  void exceuteePaypalPayment(BuildContext context, ({AmountModel amount, ItemListModel itemList}) transctionsData) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "YOUR CLIENT ID",
+        secretKey: "YOUR SECRET KEY",
+        transactions: [
+          {
+            "amount": transctionsData.amount.toJson(),
+            "description": "The payment transaction description.",
+            // "payment_options": {
+            //   "allowed_payment_method":
+            //       "INSTANT_FUNDING_SOURCE"
+            // },
+            "item_list": transctionsData.itemList.toJson(),
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          log("onSuccess: $params");
+          Navigator.pop(context);
+        },
+        onError: (error) {
+          log("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          debugPrint('cancelled:');
+          Navigator.pop(context);
+        },
+      ),
+    ));
+              
+  }
+
+  ({AmountModel amount, ItemListModel itemList}) getTransctionsData() {
+    var amount = AmountModel(
+        total: "100",
+        currency: "USD",
+        details: Details(subtotal: '100', shipping: '0', shippingDiscount: 0));
+
+    List<OrderItemModel> orders = [
+      OrderItemModel(
+        name: "Apple",
+        quantity: 4,
+        price: "10",
+        currency: "USD",
+      ),
+      OrderItemModel(
+        name: "Pineapple",
+        quantity: 5,
+        price: "12",
+        currency: "USD",
+      )
+    ];
+    var itemList = ItemListModel(orders: orders);
+
+    return (amount: amount, itemList: itemList);
   }
 }
