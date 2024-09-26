@@ -75,9 +75,12 @@ class CustomButtomBlocConsumer extends StatelessWidget {
         onSuccess: (Map params) async {
           log("onSuccess: $params");
           Navigator.pop(context);
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const ThankYouView()));
         },
         onError: (error) {
           log("onError: $error");
+          Navigator.pop(context);
           Navigator.pop(context);
         },
         onCancel: () {
