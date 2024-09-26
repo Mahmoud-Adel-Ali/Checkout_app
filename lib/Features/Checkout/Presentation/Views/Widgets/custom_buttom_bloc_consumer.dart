@@ -9,6 +9,7 @@ import 'package:checkout_app/Features/Checkout/data/models/amount_model/amount_m
 import 'package:checkout_app/Features/Checkout/data/models/amount_model/details.dart';
 import 'package:checkout_app/Features/Checkout/data/models/item_list_model/item_list_model.dart';
 import 'package:checkout_app/Features/Checkout/data/models/item_list_model/order_item_model.dart';
+import 'package:checkout_app/Features/Checkout/data/models/payment_intent_input_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
@@ -16,8 +17,9 @@ import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 class CustomButtomBlocConsumer extends StatelessWidget {
   const CustomButtomBlocConsumer({
     super.key,
+    required this.paymentType,
   });
-
+  final PaymentType paymentType;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentCubit, PaymentState>(
@@ -35,22 +37,37 @@ class CustomButtomBlocConsumer extends StatelessWidget {
         return CustomButtom(
           isLoading: state is PaymentLoading,
           onPressed: () {
-            // context.read<PaymentCubit>().makePayment(
-            //       paymentIntentInputModel: PaymentIntentInputModel(
-            //         amount: '100',
-            //         currency: 'USD',
-            //         customerId: 'cus_QsXJYf3W0UeU4U',
-            //       ),
-            //     );
-
-            var transctionsData = getTransctionsData();
-
-            exceuteePaypalPayment(context, transctionsData);
+            if (paymentType == PaymentType.creditCard) {
+              paymentWithCard(context);
+            } else if (paymentType == PaymentType.paypal) {
+              paymentWithPaypal(context);
+            }
+            if (paymentType == PaymentType.applePay) {
+              Navigator.pop(context);
+              showSnakBarMessage(context,
+                  msg: 'InValid now , try other payment type');
+            }
           },
           text: 'Continue',
         );
       },
     );
+  }
+
+  void paymentWithPaypal(BuildContext context) {
+    var transctionsData = getTransctionsData();
+
+    exceuteePaypalPayment(context, transctionsData);
+  }
+
+  void paymentWithCard(BuildContext context) {
+    context.read<PaymentCubit>().makePayment(
+          paymentIntentInputModel: PaymentIntentInputModel(
+            amount: '100',
+            currency: 'USD',
+            customerId: 'cus_QsXJYf3W0UeU4U',
+          ),
+        );
   }
 
   void exceuteePaypalPayment(BuildContext context,
@@ -116,3 +133,5 @@ class CustomButtomBlocConsumer extends StatelessWidget {
     return (amount: amount, itemList: itemList);
   }
 }
+
+enum PaymentType { creditCard, paypal, applePay }
