@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
+import 'package:checkout_app/Core/utils/api_keys.dart';
 import 'package:checkout_app/Core/utils/functions/show_snak_bar_message.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/manager/payment_cubit/payment_cubit.dart';
@@ -52,12 +53,13 @@ class CustomButtomBlocConsumer extends StatelessWidget {
     );
   }
 
-  void exceuteePaypalPayment(BuildContext context, ({AmountModel amount, ItemListModel itemList}) transctionsData) {
+  void exceuteePaypalPayment(BuildContext context,
+      ({AmountModel amount, ItemListModel itemList}) transctionsData) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
-        clientId: "YOUR CLIENT ID",
-        secretKey: "YOUR SECRET KEY",
+        clientId: ApiKeys.paypalClientId,
+        secretKey: ApiKeys.payPalSecretKey,
         transactions: [
           {
             "amount": transctionsData.amount.toJson(),
@@ -84,7 +86,6 @@ class CustomButtomBlocConsumer extends StatelessWidget {
         },
       ),
     ));
-              
   }
 
   ({AmountModel amount, ItemListModel itemList}) getTransctionsData() {
