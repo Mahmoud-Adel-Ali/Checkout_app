@@ -1,0 +1,13 @@
+* Easy integration with Paymob's payment system.
+* Support for multiple payment methods: Visa and mobile wallets.
+* Customizable payment view with style options.
+* User data collection for payments.
+* Callbacks for payment success and error handling.
+
+=> requirement
+* Flutter SDK installed on your machine.
+* A Paymob account to get your API key and other necessary credentials.
+
+go to documentation
+
+https://pub.dev/documentation/pay_with_paymob/latest/
