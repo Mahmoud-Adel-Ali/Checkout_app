@@ -43,10 +43,11 @@ class CustomButtomBlocConsumer extends StatelessWidget {
             } else if (paymentType == PaymentType.paypal) {
               paymentWithPaypal(context);
             }
-            if (paymentType == PaymentType.applePay) {
+            if (paymentType == PaymentType.paymob) {
+              // TODO : create payment with paymob
               Navigator.pop(context);
               showSnakBarMessage(context,
-                  msg: 'InValid now , try other payment type');
+                  msg: 'Paymob InValid now , try other payment type');
             }
           },
           text: 'Continue',

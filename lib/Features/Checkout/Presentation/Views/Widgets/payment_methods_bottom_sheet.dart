@@ -16,7 +16,7 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
   final List<String> items = [
     AppImages.imagesCard,
     AppImages.imagesPaypal,
-    AppImages.imagesApplePay,
+    AppImages.imagesPaymob,
   ];
   int activeIndex = 0;
   @override
@@ -50,7 +50,7 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
                 ? PaymentType.creditCard
                 : activeIndex == 1
                     ? PaymentType.paypal
-                    : PaymentType.applePay,
+                    : PaymentType.paymob,
           )
         ],
       ),
