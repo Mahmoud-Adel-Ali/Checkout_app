@@ -4,6 +4,7 @@ import 'package:checkout_app/Core/Widgets/custom_buttom.dart';
 import 'package:checkout_app/Core/enums/payment_type.dart';
 import 'package:checkout_app/Core/utils/api_keys.dart';
 import 'package:checkout_app/Core/utils/functions/show_snak_bar_message.dart';
+import 'package:checkout_app/Core/utils/paymob_services.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
 import 'package:checkout_app/Features/Checkout/Presentation/manager/payment_cubit/payment_cubit.dart';
 import 'package:checkout_app/Features/Checkout/data/models/amount_model/amount_model.dart';
@@ -45,9 +46,10 @@ class CustomButtomBlocConsumer extends StatelessWidget {
             }
             if (paymentType == PaymentType.paymob) {
               // TODO : create payment with paymob
-              Navigator.pop(context);
-              showSnakBarMessage(context,
-                  msg: 'Paymob InValid now , try other payment type');
+              makePaymobPayment(context);
+              // Navigator.pop(context);
+              // showSnakBarMessage(context,
+              //     msg: 'Paymob InValid now , try other payment type');
             }
           },
           text: 'Continue',
