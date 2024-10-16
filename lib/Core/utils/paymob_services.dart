@@ -2,14 +2,13 @@
 
 import 'dart:developer';
 
+import 'package:checkout_app/Features/Checkout/Presentation/Views/thank_you_view.dart';
 import 'package:flutter/material.dart';
 import 'package:pay_with_paymob/paymob_payment.dart';
 
 const String paymobApiKey =
     'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TVRBd01EWXlNeXdpYm1GdFpTSTZJbWx1YVhScFlXd2lmUS5DM1Q1c3lPZ1NpODRndUFtM00yMXhKRGF5bWZNUTlfdm1IZS1jTWxpS1lpczBrTDktN3Rwb0ppQVRrcHpvcjRURXpJZkktMkNZcGNYMGVzVjIwUF9kdw==';
-const String paymobIframId =
-    'https://accept.paymob.com/api/acceptance/iframes/874630?payment_token={payment_key_obtained_previously}';
-
+const String paymobIframId = '874631';
 initialPaymob() {
   return PaymentData.initialize(
     // (Required) getting it from dashboard Select Settings -> Account Info -> API Key
@@ -52,11 +51,12 @@ makePaymobPayment(BuildContext context) {
               onPaymentSuccess: () {
                 // Handle payment success
                 log("Payment with Paymob Success");
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ThankYouView()));
               },
               onPaymentError: () {
                 // Handle payment error
                 log("Payment with Paymob Failed");
-
               },
               price: 100, // (Required) Total Price e.g. 100 => 100 LE
             )),
