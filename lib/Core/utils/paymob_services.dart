@@ -8,7 +8,7 @@ import 'package:pay_with_paymob/paymob_payment.dart';
 
 const String paymobApiKey =
     'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TVRBd01EWXlNeXdpYm1GdFpTSTZJbWx1YVhScFlXd2lmUS5DM1Q1c3lPZ1NpODRndUFtM00yMXhKRGF5bWZNUTlfdm1IZS1jTWxpS1lpczBrTDktN3Rwb0ppQVRrcHpvcjRURXpJZkktMkNZcGNYMGVzVjIwUF9kdw==';
-const String paymobIframId = '874631';
+const String paymobIframId = '874630';
 initialPaymob() {
   return PaymentData.initialize(
     // (Required) getting it from dashboard Select Settings -> Account Info -> API Key
